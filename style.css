@@ -52,9 +52,50 @@
   }
 }
 
+@layer layout {
+  .span-all {
+    grid-column: 1 / -1;
+  }
+}
+
 @layer form {
-  h1 {
-    color: var(--green-600);
+  .contact {
+    background-color: var(--white);
+    max-inline-size: 700px;
+    margin-inline: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  input {
+    border: 1px solid var(--green-600);
+    border-radius: 6px;
+    padding: 0.5em 1em;
+  }
+
+  .form-group:has([required]) label {
+    display: flex;
+    gap: 1ch;
+
+    &::after {
+      content: "*";
+      color: var(--green-600);
+    }
+  }
+
+  .form-group {
+    display: grid;
+  }
+
+  .form-group:has([type="radio"], [type="checkbox"]) {
+    display: flex;
+    gap: 1ch;
   }
 
   .attribution {
