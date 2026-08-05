@@ -158,6 +158,23 @@
       cursor: pointer;
     }
   }
+
+  .error-message {
+    color: var(--red);
+    font-size: 0.875rem;
+    display: none;
+  }
+
+  .error-message:not(:empty) {
+    display: block;
+  }
+
+  input.invalid,
+  textarea.invalid,
+  fieldset.invalid {
+    border-color: var(--red);
+  }
+
   .attribution {
     font-size: 0.6875rem;
     text-align: center;
