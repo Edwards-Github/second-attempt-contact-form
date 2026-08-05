@@ -9,6 +9,7 @@
   /* Primary  */
   --green-200: hsl(148, 38%, 91%);
   --green-600: hsl(169, 82%, 27%);
+  --green-900: hsl(187, 24%, 22%);
   --red: hsl(0, 66%, 54%);
 
   /* Neutral */
@@ -22,6 +23,13 @@
 
   /* Font Family */
   --ff-base: "Karla", sans-serif;
+
+  --border-radius-form: 1rem;
+  --border-radius-input: 6px;
+  --padding-form: 2rem;
+  --gap-form: 1rem;
+
+  --max-inline-size-form: 700px;
 }
 
 @layer reset {
@@ -32,7 +40,7 @@
   }
 
   body {
-    accent-color: var(--green-200);
+    accent-color: var(--green-600);
     font-size: 1rem;
     font-family: var(--ff-base);
     line-height: 1.6;
@@ -61,25 +69,54 @@
 @layer form {
   .contact {
     background-color: var(--white);
-    max-inline-size: 700px;
+    max-inline-size: var(--max-inline-size-form);
     margin-inline: auto;
-    padding: 2rem;
-    border-radius: 1rem;
+    padding: var(--padding-form);
+    border-radius: var(--border-radius-form);
   }
 
   form {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-form);
+    @media (width > 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  input {
-    border: 1px solid var(--green-600);
-    border-radius: 6px;
+  fieldset {
+    padding: 0;
+    border: 0;
+    display: grid;
+    grid-template-columns: inherit;
+    gap: var(--gap-form);
+  }
+
+  textarea {
+    resize: block;
+    box-sizing: content-box;
+    height: 3lh;
+  }
+
+  input,
+  textarea,
+  .form-group:has([type="radio"]) {
+    border: 1px solid gray;
+    border-radius: var(--border-radius-input);
     padding: 0.5em 1em;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline-color: var(--green-600);
+    }
   }
 
-  .form-group:has([required]) label {
+  .form-group:has([type="radio"]:checked) {
+    background-color: var(--green-200);
+    border-color: var(--green-600);
+  }
+
+  fieldset:has([required]) legend,
+  .form-group:has(:not([type="radio"])[required]) label {
     display: flex;
     gap: 1ch;
 
@@ -98,6 +135,29 @@
     gap: 1ch;
   }
 
+  .form-group:has([type="radio"]) {
+    position: relative;
+
+    label::after {
+      content: "";
+      position: aboslute;
+      inset: 0;
+    }
+  }
+
+  button {
+    background-color: var(--green-600);
+    color: var(--white);
+    border: 0;
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius-input);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--green-900);
+      cursor: pointer;
+    }
+  }
   .attribution {
     font-size: 0.6875rem;
     text-align: center;
