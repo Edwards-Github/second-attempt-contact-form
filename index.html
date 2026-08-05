@@ -13,6 +13,7 @@
     />
 
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
     <title>Frontend Mentor | Contact form</title>
   </head>
   <body>
@@ -22,16 +23,19 @@
         <div class="form-group">
           <label for="fname">First Name</label>
           <input type="text" id="fname" name="fname" required />
+          <span class="error-message" id="fname-error"></span>
         </div>
 
         <div class="form-group">
           <label for="lname">Last Name</label>
           <input type="text" id="lname" name="lname" required />
+          <span class="error-message" id="lname-error"></span>
         </div>
 
         <div class="form-group span-all">
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" required />
+          <span class="error-message" id="email-error"></span>
         </div>
 
         <fieldset class="span-all">
@@ -45,11 +49,13 @@
             <input type="radio" id="support" name="query" required />
             <label for="support">Support Request</label>
           </div>
+          <span class="error-message span-all" id="query-error"></span>
         </fieldset>
 
         <div class="form-group span-all">
           <label for="message">Message</label>
           <textarea id="message" name="message" required></textarea>
+          <span class="error-message" id="message-error"></span>
         </div>
 
         <div class="form-group span-all">
@@ -57,6 +63,7 @@
           <label for="consent" name="consent" id="consent"
             >I consent to being contacted by the team</label
           >
+          <span class="error-message span-all" id="consent-error"></span>
         </div>
 
         <button class="span-all">Submit</button>
