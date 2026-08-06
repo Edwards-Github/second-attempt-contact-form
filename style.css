@@ -162,7 +162,7 @@
   .error-message {
     color: var(--red);
     font-size: 0.875rem;
-    display: none;
+    min-height: 1lh;
   }
 
   .error-message:not(:empty) {
