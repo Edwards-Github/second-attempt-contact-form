@@ -67,10 +67,23 @@ function validateQuery() {
   const error = document.querySelector("#query-error");
 
   error.classList.toggle("invalid", !isValid);
+  error.textContent = isValid ? "" : "Please select a query type";
+}
+
+function validateConsent() {
+  const checkbox = document.querySelector("#consent");
+  const error = document.querySelector("#consent-error");
+  const isValid = checkbox.checked;
+
+  error.classList.toggle("invalid", !isValid);
+  error.textContent = isValid
+    ? ""
+    : "To submit this form, please consent to being contacted";
 }
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  fields.map(validateField);
-  validateQuery();
+  const results = fields.map(validateField);
+  results.push(validateQuery());
+  results.push(validateConsent());
 });
