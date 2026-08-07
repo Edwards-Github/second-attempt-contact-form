@@ -182,4 +182,25 @@
   .attribution a {
     color: hsl(228, 45%, 44%);
   }
+
+  .toast {
+    display: none;
+    background-color: var(--green-900);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius-input);
+    margin-block-end: 1rem;
+    max-inline-size: 500px;
+    margin-inline: auto;
+  }
+
+  .toast.visible {
+    display: block;
+  }
+
+  .toast-title {
+    font-weight: 700;
+    display: flex;
+    gap: 1ch;
+  }
 }
