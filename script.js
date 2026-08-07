@@ -68,6 +68,8 @@ function validateQuery() {
 
   error.classList.toggle("invalid", !isValid);
   error.textContent = isValid ? "" : "Please select a query type";
+
+  return isValid;
 }
 
 function validateConsent() {
@@ -79,6 +81,8 @@ function validateConsent() {
   error.textContent = isValid
     ? ""
     : "To submit this form, please consent to being contacted";
+
+  return isValid;
 }
 
 form.addEventListener("submit", (e) => {
@@ -86,4 +90,10 @@ form.addEventListener("submit", (e) => {
   const results = fields.map(validateField);
   results.push(validateQuery());
   results.push(validateConsent());
+
+  const formIsValid = results.every(Boolean);
+  if (formIsValid) {
+    document.getElementById("success-toast").classList.add("visible");
+    form.reset();
+  }
 });
