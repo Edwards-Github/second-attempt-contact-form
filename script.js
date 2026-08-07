@@ -43,13 +43,19 @@ const fields = [
 
 function validateField(field) {
   const { input, error, messages } = field;
+  const isValid = input.checkValidity();
 
-  // 1. validate the input
-  if (input.validity.valueMissing) {
-    error.textContent = messages.valueMissing;
-  } else if (!input.checkValidity()) {
-    error.textContent = messages.typeMismatch;
+  input.classList.toggle("invalid", !isValid);
+
+  if (isValid) {
+    error.textContent = "";
+  } else {
+    // check which error it is then display the proper error message
+    let failedRule = Object.keys(messages).find((rule) => input.validity[rule]);
+    error.textContent = messages[failedRule] || "This field is invalid";
   }
+
+  return isValid;
 }
 
 function validateQuery() {
