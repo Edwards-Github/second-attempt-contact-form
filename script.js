@@ -51,7 +51,9 @@ function validateField(field) {
     error.textContent = "";
   } else {
     // check which error it is then display the proper error message
-    let failedRule = Object.keys(messages).find((rule) => input.validity[rule]);
+    const failedRule = Object.keys(messages).find(
+      (rule) => input.validity[rule],
+    );
     error.textContent = messages[failedRule] || "This field is invalid";
   }
 
@@ -59,8 +61,12 @@ function validateField(field) {
 }
 
 function validateQuery() {
+  const fieldset = document.querySelector("fieldset");
   const radios = document.querySelectorAll('input[name="query"]');
-  Arrays.from(document.querySelectorAll("fieldset")).some(checked);
+  const isValid = Array.from(radios).some((radio) => radio.checked);
+  const error = document.querySelector("#query-error");
+
+  error.classList.toggle("invalid", !isValid);
 }
 
 form.addEventListener("submit", (e) => {
